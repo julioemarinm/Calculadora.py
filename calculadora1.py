@@ -29,6 +29,10 @@ def seno(grados: float) -> float:
     radianes = math.radians(grados)  # Conversión de grados a radianes
     return math.sin(radianes)
 
+def elevar_al_cubo(n: float) -> float:
+    return n ** 3
+
+
 def mostrar_menu():
     print("\n" + "=" * 45)
     print("    🧮 CALCULADORA BÁSICA")
@@ -40,7 +44,8 @@ def mostrar_menu():
     print("5️⃣  Factorial")
     print("6️⃣  Raíz cuadrada")
     print("7️⃣  Seno (en grados)")
-    print("8️⃣  Salir")
+    print("8️⃣  Elevar al cubo")
+    print("9️⃣  Salir")
     print("=" * 45)
 
 
@@ -49,7 +54,7 @@ def ejecutar_calculadora():
         mostrar_menu()
         opcion = input("Elige una opción (1-9): ")
 
-        if opcion == "8":
+        if opcion == "9":
             print("¡Gracias por usar la calculadora! Hasta pronto.")
             break
 
@@ -92,6 +97,11 @@ def ejecutar_calculadora():
                 grados = float(input("Ingrese el ángulo en grados: "))
                 resultado = seno(grados)
                 print(f"✅ El seno de {grados}° es: {resultado}\n")
+            
+            elif opcion == "8":
+                n = float(input("Ingrese un número: "))
+                resultado = elevar_al_cubo(n)
+                print(f"✅ {n} elevado al cubo es: {resultado}\n")
 
             else:
                 print("Opción no válida. Intentalo de nuevo.\n")
@@ -103,3 +113,4 @@ def ejecutar_calculadora():
 
 if __name__ == "__main__":
     ejecutar_calculadora()
+
