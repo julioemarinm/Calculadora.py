@@ -1,29 +1,105 @@
-print("=== CALCULADORA BÁSICA ===")
-print("Selecciona una opción:")
-print("1. Sumar")
-print("2. Restar")
-print("3. Multiplicar")
-print("4. Dividir")
+import math  # Importamos la librería matemática para raíz y factorial
 
-op = input("Ingresa el número de la operación: ")
+def sumar(a: float, b: float) -> float:
+    return a + b
 
-num1 = float(input("Primer número: "))
-num2 = float(input("Segundo número: "))
+def restar(a: float, b: float) -> float:
+    return a - b
 
-if op == "1":
-    print("Resultado:", num1 + num2)
+def multiplicar(a: float, b: float) -> float:
+    return a * b
 
-elif op == "2":
-    print("Resultado:", num1 - num2)
+def dividir(a: float, b: float) -> float:
+    if b == 0:
+        raise ValueError("No se puede dividir por cero.")
+    return a / b
 
-elif op == "3":
-    print("Resultado:", num1 * num2)
+def factorial(n: int) -> int:
+    if n < 0:
+        raise ValueError("No se puede calcular el factorial de un número negativo.")
+    return math.factorial(n)
 
-elif op == "4":
-    if num2 != 0:
-        print("Resultado:", num1 / num2)
-    else:
-        print("Error: no se puede dividir entre cero")
 
-else:
-    print("Opción no válida")
+def raiz_cuadrada(n: float) -> float:
+    if n < 0:
+        raise ValueError("No se puede calcular la raíz cuadrada de un número negativo.")
+    return math.sqrt(n)
+
+def seno(grados: float) -> float:
+    radianes = math.radians(grados)  # Conversión de grados a radianes
+    return math.sin(radianes)
+
+def mostrar_menu():
+    print("\n" + "=" * 45)
+    print("    🧮 CALCULADORA BÁSICA")
+    print("=" * 45)
+    print("1️⃣  Sumar")
+    print("2️⃣  Restar")
+    print("3️⃣  Multiplicar")
+    print("4️⃣  Dividir")
+    print("5️⃣  Factorial")
+    print("6️⃣  Raíz cuadrada")
+    print("7️⃣  Seno (en grados)")
+    print("8️⃣  Salir")
+    print("=" * 45)
+
+
+def ejecutar_calculadora():
+    while True:
+        mostrar_menu()
+        opcion = input("Elige una opción (1-9): ")
+
+        if opcion == "8":
+            print("¡Gracias por usar la calculadora! Hasta pronto.")
+            break
+
+        
+        if opcion not in {"1", "2", "3", "4", "5", "6", "7","8","9"}:
+            print("Opción no válida. Intenta de nuevo.")
+            continue
+
+        try:
+            if opcion in {"1", "2", "3", "4"}:
+                a = float(input("Ingrese el primer número: "))
+                b = float(input("Ingrese el segundo número: "))
+
+                if opcion == "1":
+                    resultado = sumar(a, b)
+                    operacion = "suma"
+                elif opcion == "2":
+                    resultado = restar(a, b)
+                    operacion = "resta"
+                elif opcion == "3":
+                    resultado = multiplicar(a, b)
+                    operacion = "multiplicación"
+                elif opcion == "4":
+                    resultado = dividir(a, b)
+                    operacion = "división"
+
+                print(f"✅ El resultado de la {operacion} es: {resultado}\n")
+
+            elif opcion == "5":
+                n = int(input("Ingrese un número entero: "))
+                resultado = factorial(n)
+                print(f"✅ El factorial de {n} es: {resultado}\n")
+
+            elif opcion == "6":
+                n = float(input("Ingrese un número: "))
+                resultado = raiz_cuadrada(n)
+                print(f"✅ La raíz cuadrada de {n} es: {resultado}\n")
+
+            elif opcion == "7":
+                grados = float(input("Ingrese el ángulo en grados: "))
+                resultado = seno(grados)
+                print(f"✅ El seno de {grados}° es: {resultado}\n")
+
+            else:
+                print("Opción no válida. Intentalo de nuevo.\n")
+    
+
+        except ValueError as e:
+            print(f" Error: {e}\n")
+
+
+if __name__ == "__main__":
+    ejecutar_calculadora()
